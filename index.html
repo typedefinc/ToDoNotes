@@ -5,8 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ToDoNotes</title>
 	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
+	<h1 class="hint">Add note press "plus"</h1>
 	<div class="menu">
 		<ul>
 			<li>
@@ -15,42 +19,17 @@
 		</ul>
 	</div>
 	<div class="container">
-			<div class="block-note">
-				<h1 class="block-note__title">
-					Test1
-				</h1>
-				<p class="block-note__description">
-					Lorem ipsum dolor sit amet consectetur adipisicing, elit. Maiores, facilis, pariatur quidem tempore, non laborum, quas quo dolorem sapiente perspiciatis qui voluptatem officia dolorum molestias aliquam aperiam ut recusandae eos!
-				</p>
-				<a href="#" class='close'>X</a>
+
+	</div>
+	<div class="modal-add_note">
+		<div class="modal-add__block">
+			<input type="text" class="modal-add__title" placeholder="Title">
+			<textarea class="modal-add__description" placeholder="Descritption"></textarea>
+			<div class="btn-block">
+				<button type="button"class="modal-add__btn">Add</button>
+				<button type="button" class="modal-add__cls">Close</button>
 			</div>
-			<div class="block-note">
-				<h1 class="block-note__title">
-					Test2
-				</h1>
-				<p class="block-note__description">
-					Lorem ipsum dolor sit amet consectetur adipisicing, elit. Maiores, facilis, pariatur quidem tempore, non laborum, quas quo dolorem sapiente perspiciatis qui voluptatem officia dolorum molestias aliquam aperiam ut recusandae eos!
-				</p>
-				<a href="#" class='close'>X</a>
-			</div>
-			<div class="block-note">
-				<h1 class="block-note__title">
-					Test3
-				</h1>
-				<p class="block-note__description">
-					Lorem ipsum dolor sit amet consectetur adipisicing, elit. Maiores, facilis, pariatur quidem tempore, non laborum, quas quo dolorem sapiente perspiciatis qui voluptatem officia dolorum molestias aliquam aperiam ut recusandae eos!
-				</p>
-				<a href="#" class='close'>X</a>
-			</div>
-			<div class="block-note">
-				<h1 class="block-note__title">
-					Test4
-				</h1>
-				<p class="block-note__description">
-					Lorem ipsum dolor sit amet consectetur adipisicing, elit. Maiores, facilis, pariatur quidem tempore, non laborum, quas quo dolorem sapiente perspiciatis qui voluptatem officia dolorum molestias aliquam aperiam ut recusandae eos!
-				</p>
-				<a href="#" class='close'>X</a>
-			</div>
+		</div>
 	</div>
 	<script src="js/script.js"></script>
 </body>
