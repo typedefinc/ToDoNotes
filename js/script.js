@@ -7,14 +7,11 @@ let close = document.querySelectorAll('.block-note__close');
 const title = modalAdd.querySelector(".modal-add__title");
 const description = modalAdd.querySelector(".modal-add__description");
 
-
 const localModal = {
 	title:[],
 	description: [],
 	isImportant:false	
 };
-
-let dwldItem = localStorage.getItem('modalObject')!=null ? JSON.parse(localStorage.getItem('modalObject')):localModal;
 
 function addListenerClose(){
 		imp = document.querySelectorAll('.block-note__star');
@@ -26,11 +23,13 @@ function addListenerClose(){
 				localModal.title.map((elem,index)=>{
 					if(elem==this.closest('.block-note').querySelector('.block-note__title').textContent){
 						elem = localModal.title.splice(index,1);
+						localStorage.setItem('modalObject', JSON.stringify(localModal));
 					}
 				})
 				localModal.description.map((elem,index)=>{
 					if(elem==this.closest('.block-note').querySelector('.block-note__description').textContent){
 						elem = localModal.description.splice(index,1);
+						localStorage.setItem('modalObject', JSON.stringify(localModal));
 					}
 				})
 				this.closest('.block-note').remove();
@@ -45,10 +44,9 @@ function addListenerClose(){
 				localStorage.setItem('modalObject', JSON.stringify(localModal));
 			});
 		});
-		localStorage.setItem('modalObject', JSON.stringify(localModal));
 
 }
-
+let dwldItem = localStorage.getItem('modalObject')!=null ? JSON.parse(localStorage.getItem('modalObject')):localModal;
 if(dwldItem.title!=null){ localModal.title = dwldItem.title;
 localModal.description = dwldItem.description;
 localModal.isImportant = dwldItem.isImportant;}
