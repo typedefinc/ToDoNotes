@@ -63,6 +63,9 @@ body{
 	text-decoration: none;
 	right: 30px;
 }
+.star{
+	color:yellow;
+}
 .block-note__close:hover{
 	color: red;
 }

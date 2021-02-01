@@ -6,40 +6,84 @@ const modalAdd = document.querySelector('.modal-add_note');
 let close = document.querySelectorAll('.block-note__close');
 const title = modalAdd.querySelector(".modal-add__title");
 const description = modalAdd.querySelector(".modal-add__description");
-console.log(close);
+let dwldItem = localStorage.getItem('modalObject')!=null ? JSON.parse(localStorage.getItem('modalObject')):localModal;
 
+const localModal = {
+	title:[],
+	description: [],
+	isImportant:false	
+};
 
+function addListenerClose(){
+		imp = document.querySelectorAll('.block-note__star');
+		close = document.querySelectorAll('.block-note__close');
+		close.forEach((el)=>{
+			el.addEventListener('click', function cl(){
+				this.closest('.block-note').style.opacity = 0;
+			setTimeout(()=>{
+				localModal.title.map((elem,index)=>{
+					if(elem==this.closest('.block-note').querySelector('.block-note__title').textContent){
+						elem = localModal.title.splice(index,1);
+					}
+				})
+				localModal.description.map((elem,index)=>{
+					if(elem==this.closest('.block-note').querySelector('.block-note__description').textContent){
+						elem = localModal.description.splice(index,1);
+					}
+				})
+				this.closest('.block-note').remove();
+				},550);
+			})
+		})	
 
-	addButton.addEventListener('click', (e) =>{
+		imp.forEach((el)=>{
+			el.addEventListener('click', (elem)=>{
+				localModal.isImportant = !localModal.isImportant;
+				el.classList.toggle('star');
+				localStorage.setItem('modalObject', JSON.stringify(localModal));
+			});
+		});
+		localStorage.setItem('modalObject', JSON.stringify(localModal));
+
+}
+
+if(dwldItem.title!=null){ localModal.title = dwldItem.title;
+localModal.description = dwldItem.description;
+localModal.isImportant = dwldItem.isImportant;}
+for(let i in dwldItem.title){
+		 desktop.innerHTML +=
+					 `
+					 <div class="block-note">
+						<h1 class="block-note__title">${dwldItem.title[i]}</h1>
+						<p class="block-note__description">${dwldItem.description[i]}</p>
+						<i class="fas fa-star block-note__star ${dwldItem.isImportant?"star":""}"></i>
+						<i class="fas fa-trash-alt block-note__close"></i>
+					</div>
+
+					`
+	}
+	addListenerClose();
+addButton.addEventListener('click', (e) =>{
 		e.preventDefault();
 		modalAdd.style.display = 'flex';
-		});
-	modalAdd.querySelector(".modal-add__btn").addEventListener('click',()=>{
+	});
+modalAdd.querySelector(".modal-add__btn").addEventListener('click',()=>{
 				if(title.value!=''){
 					desktop.innerHTML +=
 				 `
 				 <div class="block-note">
-					<h1 class="block-note__title">
-						${title.value}
-					</h1>
-					<p class="block-note__description">
-						${description.value}
-					</p>
+					<h1 class="block-note__title">${title.value}</h1>
+					<p class="block-note__description">${description.value}</p>
 					<i class="fas fa-star block-note__star"></i>
 					<i class="fas fa-trash-alt block-note__close"></i>
 				</div>
 
 				`
+				localModal.title.push(title.value);
+				localModal.description.push(description.value);
+				localStorage.setItem('modalObject', JSON.stringify(localModal));
 				}
-					close = document.querySelectorAll('.block-note__close');
-					close.forEach((el)=>{
-					el.addEventListener('click', function cl(){
-						this.closest('.block-note').style.opacity = 0;
-					setTimeout(()=>{
-						this.closest('.block-note').remove();
-					},550);
-						})
-					})	
+				addListenerClose();	
 				if(title.value!=''){	
 				title.value='';
 				description.value='';
