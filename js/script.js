@@ -6,13 +6,15 @@ const modalAdd = document.querySelector('.modal-add_note');
 let close = document.querySelectorAll('.block-note__close');
 const title = modalAdd.querySelector(".modal-add__title");
 const description = modalAdd.querySelector(".modal-add__description");
-let dwldItem = localStorage.getItem('modalObject')!=null ? JSON.parse(localStorage.getItem('modalObject')):localModal;
+
 
 const localModal = {
 	title:[],
 	description: [],
 	isImportant:false	
 };
+
+let dwldItem = localStorage.getItem('modalObject')!=null ? JSON.parse(localStorage.getItem('modalObject')):localModal;
 
 function addListenerClose(){
 		imp = document.querySelectorAll('.block-note__star');
